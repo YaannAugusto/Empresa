@@ -54,3 +54,4 @@ D:\treinamento\Loja\obj\Debug\net6.0\Loja.dll
 D:\treinamento\Loja\obj\Debug\net6.0\ref\Loja.dll
 D:\treinamento\Loja\obj\Debug\net6.0\Loja.pdb
 D:\treinamento\Loja\obj\Debug\net6.0\Loja.genruntimeconfig.cache
+D:\treinamento\Loja\bin\Debug\net6.0\FluentAssertions.dll

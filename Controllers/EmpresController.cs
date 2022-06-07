@@ -8,14 +8,29 @@ namespace Loja.Controllers
     public class EmpresController : ControllerBase
     {
 
+        
         [HttpGet("c1/Empresa")]
         public async Task<IActionResult> GetAsync([FromServices] EmpresaDataContext context)
         {
-            var empresa = await context.Empresas.ToListAsync();
-            return Ok(empresa);
+            try
+            {
+                var empresa = await context.Empresas.ToListAsync();
+                return Ok(empresa);
+            }
+            catch (DbUpdateException ex)
+            {
+                return StatusCode(500, "05XE8 - Não foi possivel alterar a categoria!");
+
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(500, "05XE11 - Falha interna no servidor!");
+
+            }
         }
 
-        [HttpGet("c1/Empresa/{id:int}")] //localhost:PORT/v1/categories
+        [HttpGet("c1/Empresa/id")] 
         public async Task<IActionResult> GetByIdAsync([FromRoute] int id, [FromServices] EmpresaDataContext context)
         {
             var empresa = await context.Empresas.FirstOrDefaultAsync(x => x.EmployeeId == id);
@@ -28,20 +43,15 @@ namespace Loja.Controllers
         [HttpPost("c1/Empresa")]
         public async Task<IActionResult> PostAsync([FromBody] Empres model, [FromServices] EmpresaDataContext context)
         {
-            var empresa = new Empres
-            {
-                Cep = model.Cep,
-                Company = model.Company
-            };
+            //Nesse caso, vc já está recebendo a entidade do banco via Body do HTTP, porém não é o correto.
+            await context.Empresas.AddAsync(model);
+            await context.SaveChangesAsync();
 
-            await context.Empresas.AddAsync(empresa);
-            context.SaveChanges();
-
-            return Created($"v1/empresas{empresa.EmployeeId}", empresa);
+            return Created($"v1/empresas{model.EmployeeId}", model);
         }
 
 
-        [HttpPut("c1/Empresa")]
+        [HttpPut($"c1/Empresa/")]
         public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] Empres model, [FromServices] EmpresaDataContext context)
         {
             var empresa = await context.Empresas.FirstOrDefaultAsync(x => x.EmployeeId == id);
@@ -51,6 +61,7 @@ namespace Loja.Controllers
 
             empresa.Cep = model.Cep;
             empresa.Company = model.Company;
+            empresa.Funcionarios = model.Funcionarios;
 
 
             context.Empresas.Update(empresa);
@@ -59,7 +70,7 @@ namespace Loja.Controllers
             return Ok(model);
         }
 
-        [HttpDelete("c1/Empresa")]
+        [HttpDelete($"c1/Empresa")]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromBody] Empres model, [FromServices] EmpresaDataContext context)
         {
             var empresa = await context.Empresas.FirstOrDefaultAsync(x => x.EmployeeId == id);
@@ -71,6 +82,7 @@ namespace Loja.Controllers
             context.SaveChanges();
 
             return Ok(empresa);
+
         }
     }
 }

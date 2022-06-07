@@ -7,16 +7,16 @@ namespace Loja.Controllers
 {
     public class FuncionarioController : ControllerBase
     {
-        /*
-
-        [HttpGet("d1/funcionario")]
+        
+        
+        [HttpGet("d1/Funcionario")]
         public async Task<IActionResult> GetAsync([FromServices] EmpresaDataContext context)
         {
             var funcionario = await context.Funcionarios.ToListAsync();
             return Ok(funcionario);
         }
 
-        [HttpGet("d1/funcionario")]
+        [HttpGet("d1/Funcionario/id")]
         public  IActionResult GetById ([FromRoute] int id, [FromServices] EmpresaDataContext context)
         { 
                 
@@ -24,24 +24,18 @@ namespace Loja.Controllers
             return Ok(funcionario);
         }
 
-        [HttpPost("d1/funcionario")]
+        [HttpPost("d1/Funcionario")]
         public async Task<IActionResult> PostAsync([FromBody] Funcionario model, [FromServices] EmpresaDataContext context)
         {
-            var funcionario = new Funcionario
-            {
-                Id = model.Id,
-                Name = model.Name,
-                Cpf = model.Cpf,
-                Func = model.Func
-            };
+            
 
-            await context.Funcionarios.AddAsync(funcionario);
+            await context.Funcionarios.AddAsync(model);
             context.SaveChanges();
 
-            return Created($"d1/funcionario{funcionario.Id}", funcionario);
+            return Created($"d1/funcionario{model.Id}", model);
         }
 
-        [HttpPut("d1/funcionario")]
+        [HttpPut("d1/Funcionario")]
         public async Task<IActionResult> PutAsync([FromRoute] int id, [FromBody] Funcionario model, [FromServices] EmpresaDataContext context)
         {
             var funcionario =  context.Funcionarios.FirstOrDefault(x => x.Id == id);
@@ -49,7 +43,6 @@ namespace Loja.Controllers
             if(funcionario == null)
                 return NotFound();
 
-            funcionario.Id = model.Id;
             funcionario.Name = model.Name;
             funcionario.Cpf = model.Cpf;
             funcionario.Func = model.Func;
@@ -60,7 +53,7 @@ namespace Loja.Controllers
             return Ok(model);
         }
 
-        [HttpDelete("d1/funcionario")]
+        [HttpDelete("d1/Funcionario")]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id, [FromServices] EmpresaDataContext context)
         {
             var funcionario =  await context.Funcionarios.FirstOrDefaultAsync(x => x.Id == id);
@@ -77,6 +70,8 @@ namespace Loja.Controllers
 
         
         }
-     */
+
+        
+     
     }
 }

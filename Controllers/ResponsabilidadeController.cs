@@ -7,7 +7,8 @@ namespace Loja.Controllers
 {
     public class ResponsabilidadeController : ControllerBase
     {
-        /*
+        
+        
         
         [HttpGet("e1/responsabilidade")]
         public async Task<IActionResult> GetAsync([FromServices] EmpresaDataContext context)
@@ -18,7 +19,7 @@ namespace Loja.Controllers
             return Ok(resp);
         }
 
-        [HttpGet("e1/responsabilidade{int: id}")]
+        [HttpGet("e1/responsabilidade/id")]
         public async Task<IActionResult> GetByIdAsync([FromServices] EmpresaDataContext context, [FromRoute] int id)
         {
             var resp = await  context.Responsabilidades.FirstOrDefaultAsync(x => x.RespId == id);
@@ -29,17 +30,12 @@ namespace Loja.Controllers
         public async Task<IActionResult> PostAsync([FromServices] EmpresaDataContext context, [FromBody] Responsabilidade model)
         {
 
-            var resp = new Responsabilidade
-            {
-                Ativo = model.Ativo,
-                Name = model.Name
-            };
-      
+            
 
-            await context.Responsabilidades.AddAsync(resp);
+            await context.Responsabilidades.AddAsync(model);
             await context.SaveChangesAsync();
 
-            return Ok(resp);
+            return Created($"d1/funcionario{model.RespId}", model);
         }
 
         [HttpPut("e1/responsabilidade")]
@@ -73,6 +69,5 @@ namespace Loja.Controllers
             return Ok(resp);
         }
 
-        */
     }
 }

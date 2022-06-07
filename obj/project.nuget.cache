@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "1icmyCJmUyh443uikpwBv2S/M4BfDLiQhnqsiDel1WQBf4Zpie7+ZWfJPxfBTo7DwzIPIw1LicH3REgNnb0zIQ==",
+  "dgSpecHash": "j8u9/9fpBD3uY3IoIr47zmbBfHl85dES9fUK6QC9oIH1ZbKElxJkEXVpR9kuxTkEoMY0U9Aex2EqzuNreENLhw==",
   "success": true,
   "projectFilePath": "D:\\treinamento\\Loja\\Loja.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\yan_a\\.nuget\\packages\\fluentassertions\\6.7.0\\fluentassertions.6.7.0.nupkg.sha512",
     "C:\\Users\\yan_a\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\yan_a\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\yan_a\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
